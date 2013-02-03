@@ -211,11 +211,19 @@
                                     <action selector="flipCard:" destination="2" eventType="touchUpInside" id="OFs-Cs-oZO"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Score: 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vw0-Ug-AsD">
+                                <rect key="frame" x="154" y="419" width="146" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="flipLabel" destination="kPx-v9-gTM" id="mSM-Ru-ql8"/>
+                        <outlet property="scoreLabel" destination="vw0-Ug-AsD" id="EK3-6n-fHG"/>
                         <outletCollection property="cardButtons" destination="UjX-0h-Nz1" id="Tze-u2-g5Q"/>
                         <outletCollection property="cardButtons" destination="HCs-FD-04F" id="vvN-nZ-U85"/>
                         <outletCollection property="cardButtons" destination="KUj-o3-Yg8" id="JQo-cr-BJD"/>
@@ -238,7 +246,9 @@
         <class className="CardGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
             <relationships>
+                <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="flipLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
                 <relationship kind="outletCollection" name="cardButtons" candidateClass="UIButton"/>
             </relationships>
         </class>

@@ -10,6 +10,28 @@
 
 @implementation PlayingCard
 
+- (int)match:(NSArray *)otherCards
+{
+    int score=0;
+    
+    if (otherCards.count == 1) {
+        PlayingCard *otherCard = [otherCards lastObject];
+        if ([otherCard.suit isEqualToString:self.suit]) {
+            score=1;
+        } else if (otherCard.rank == self.rank){
+            score = 4;
+        }
+        
+    }
+//    for (Card *card in otherCards) {
+//        if([card.contents isEqualToString:self.contents]){
+//            score=1;
+//        }
+//    }
+    return score;
+}
+
+
 // Normally this @synthesize is automatically created for you by the compiler.
 // but if you implement BOTH the setter AND the getter yourself, then you also
 // have to do the @synthesize yourself too.
