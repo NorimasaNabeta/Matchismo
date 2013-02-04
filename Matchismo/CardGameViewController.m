@@ -31,6 +31,7 @@
 //    return _deck;
 //}
 
+@synthesize game=_game;
 // Lecture 3 slides 86/139
 - (CardMatchingGame *)game
 {
@@ -41,6 +42,12 @@
                                                   usingDeck:[[PlayingCardDeck alloc] init]];
     }
     return _game;
+}
+- (void) setGame:(CardMatchingGame *)game
+{
+    if (_game != game) {
+        _game = game;
+    }
 }
 
 - (void) setCardButtons:(NSArray *)cardButtons
@@ -89,6 +96,12 @@
 //        sender.selected=NO;
 //    }
     self.flipCount++;
+    [self updateUI];
+}
+
+- (IBAction)redealCard:(UIButton *)sender {
+    [self setGame:nil];
+    self.flipCount=0;
     [self updateUI];
 }
 
