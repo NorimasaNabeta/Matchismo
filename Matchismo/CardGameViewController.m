@@ -19,6 +19,7 @@
 // Lecture 3 slides 85/139
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
 @end
 
 @implementation CardGameViewController
@@ -67,7 +68,7 @@
         cardButton.alpha = card.isUnplayable ? 0.3:1.0;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
-    
+    self.noticeLabel.text = self.game.result;
 }
 - (void) setFlipCount:(int)flipCount
 {
