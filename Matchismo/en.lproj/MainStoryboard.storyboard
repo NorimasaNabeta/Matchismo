@@ -141,7 +141,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Flip: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kPx-v9-gTM">
-                                <rect key="frame" x="20" y="419" width="136" height="21"/>
+                                <rect key="frame" x="20" y="408" width="96" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -212,7 +212,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Score: 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vw0-Ug-AsD">
-                                <rect key="frame" x="154" y="419" width="146" height="21"/>
+                                <rect key="frame" x="214" y="410" width="86" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -304,11 +304,23 @@
                                     <action selector="redealCard:" destination="2" eventType="touchUpInside" id="9zG-LQ-gXF"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="IB4-if-ZWL">
+                                <rect key="frame" x="80" y="7" width="161" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="2-card"/>
+                                    <segment title="3-card"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changeModeSegment:" destination="2" eventType="valueChanged" id="OBd-bH-SNU"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="flipLabel" destination="kPx-v9-gTM" id="mSM-Ru-ql8"/>
+                        <outlet property="modeControl" destination="IB4-if-ZWL" id="t0L-XD-cSW"/>
                         <outlet property="noticeLabel" destination="FuB-fI-LcY" id="563-rC-mtr"/>
                         <outlet property="scoreLabel" destination="vw0-Ug-AsD" id="EK3-6n-fHG"/>
                         <outletCollection property="cardButtons" destination="UjX-0h-Nz1" id="Tze-u2-g5Q"/>
@@ -337,9 +349,11 @@
         <class className="CardGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
             <relationships>
+                <relationship kind="action" name="changeModeSegment:" candidateClass="UISegmentedControl"/>
                 <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
                 <relationship kind="action" name="redealCard:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="flipLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="modeControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="noticeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
                 <relationship kind="outletCollection" name="cardButtons" candidateClass="UIButton"/>

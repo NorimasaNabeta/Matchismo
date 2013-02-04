@@ -20,6 +20,7 @@
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *modeControl;
 @end
 
 @implementation CardGameViewController
@@ -97,13 +98,22 @@
 //    }
     self.flipCount++;
     [self updateUI];
+    if (self.modeControl.enabled) {
+        self.modeControl.enabled = NO;
+    }
 }
 
 - (IBAction)redealCard:(UIButton *)sender {
     [self setGame:nil];
     self.flipCount=0;
     [self updateUI];
+    self.modeControl.enabled = YES;
 }
+
+- (IBAction)changeModeSegment:(UISegmentedControl *)sender {
+}
+
+
 
 
 @end
