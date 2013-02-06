@@ -23,6 +23,10 @@
 		F2A190C416BAB10D002767AA /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A190C316BAB10D002767AA /* PlayingCard.m */; };
 		F2A190C716BAB146002767AA /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A190C616BAB146002767AA /* PlayingCardDeck.m */; };
 		F2C1CEAA16BE7E6100E40F24 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C1CEA916BE7E6100E40F24 /* CardMatchingGame.m */; };
+		F2C1CEAC16BFE35200E40F24 /* astoria.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2C1CEAB16BFE35200E40F24 /* astoria.jpg */; };
+		F2C1CEAE16C2729400E40F24 /* darkorange.png in Resources */ = {isa = PBXBuildFile; fileRef = F2C1CEAD16C2729400E40F24 /* darkorange.png */; };
+		F2C1CEB016C272CF00E40F24 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = F2C1CEAF16C272CF00E40F24 /* white.png */; };
+		F2C1CEB616C2785A00E40F24 /* CardMatchingGameTriple.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C1CEB516C2785A00E40F24 /* CardMatchingGameTriple.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,11 @@
 		F2A190C616BAB146002767AA /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = Model/PlayingCardDeck.m; sourceTree = "<group>"; };
 		F2C1CEA816BE7E6100E40F24 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardMatchingGame.h; sourceTree = "<group>"; };
 		F2C1CEA916BE7E6100E40F24 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMatchingGame.m; sourceTree = "<group>"; };
+		F2C1CEAB16BFE35200E40F24 /* astoria.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = astoria.jpg; sourceTree = "<group>"; };
+		F2C1CEAD16C2729400E40F24 /* darkorange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkorange.png; sourceTree = "<group>"; };
+		F2C1CEAF16C272CF00E40F24 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
+		F2C1CEB416C2785A00E40F24 /* CardMatchingGameTriple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardMatchingGameTriple.h; path = Model/CardMatchingGameTriple.h; sourceTree = "<group>"; };
+		F2C1CEB516C2785A00E40F24 /* CardMatchingGameTriple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardMatchingGameTriple.m; path = Model/CardMatchingGameTriple.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +121,11 @@
 		F2A1909F16BAA586002767AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F2C1CEAB16BFE35200E40F24 /* astoria.jpg */,
+				F2C1CEAD16C2729400E40F24 /* darkorange.png */,
 				F2A190A016BAA586002767AA /* Matchismo-Info.plist */,
 				F2A190A116BAA586002767AA /* InfoPlist.strings */,
+				F2C1CEAF16C272CF00E40F24 /* white.png */,
 				F2A190A416BAA586002767AA /* main.m */,
 				F2A190A616BAA586002767AA /* Matchismo-Prefix.pch */,
 				F2A190AA16BAA586002767AA /* Default.png */,
@@ -126,6 +138,8 @@
 		F2A190BE16BAB049002767AA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F2C1CEB416C2785A00E40F24 /* CardMatchingGameTriple.h */,
+				F2C1CEB516C2785A00E40F24 /* CardMatchingGameTriple.m */,
 				F2C1CEA816BE7E6100E40F24 /* CardMatchingGame.h */,
 				F2C1CEA916BE7E6100E40F24 /* CardMatchingGame.m */,
 				F2A190BB16BAAFEE002767AA /* Card.h */,
@@ -197,6 +211,9 @@
 				F2A190AD16BAA586002767AA /* Default@2x.png in Resources */,
 				F2A190AF16BAA586002767AA /* Default-568h@2x.png in Resources */,
 				F2A190B216BAA586002767AA /* MainStoryboard.storyboard in Resources */,
+				F2C1CEAC16BFE35200E40F24 /* astoria.jpg in Resources */,
+				F2C1CEAE16C2729400E40F24 /* darkorange.png in Resources */,
+				F2C1CEB016C272CF00E40F24 /* white.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +232,7 @@
 				F2A190C416BAB10D002767AA /* PlayingCard.m in Sources */,
 				F2A190C716BAB146002767AA /* PlayingCardDeck.m in Sources */,
 				F2C1CEAA16BE7E6100E40F24 /* CardMatchingGame.m in Sources */,
+				F2C1CEB616C2785A00E40F24 /* CardMatchingGameTriple.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

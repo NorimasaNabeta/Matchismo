@@ -1,55 +1,20 @@
 //
-//  CardMatchingGame.m
+//  CardMatchingGameTriple.m
 //  Matchismo
 //
-//  Created by Norimasa Nabeta on 2013/02/03.
+//  Created by Norimasa Nabeta on 2013/02/06.
 //  Copyright (c) 2013年 CS193p. All rights reserved.
 //
 
-#import "CardMatchingGame.h"
+#import "CardMatchingGameTriple.h"
 
-@interface CardMatchingGame()
+@interface CardMatchingGameTriple()
 @property (strong,nonatomic) NSMutableArray *cards;
 @property (nonatomic) int score;
 @property (nonatomic) NSString *result;
 @end
 
-// TODO:
-// still I cannot understand the property score definition,
-// define the readonly for outside and readwrite for inside manner?
-// and not seeems inf¥heritance from the parent class.
-//
-@implementation CardMatchingGame
-
-- (NSMutableArray *) cards
-{
-    if (!_cards) _cards =[[NSMutableArray alloc] init];
-    return _cards;
-}
-
--(id) initWithCardCount:(NSUInteger)count
-              usingDeck:(Deck*)deck
-{
-    self = [super init];
-    if (self) {
-        for (int i=0; i<count; i++) {
-            Card *card = [deck drawRandomCard];
-            if (!card) {
-                self=nil;
-            } else {
-                self.cards[i]=card;
-            }
-            
-        }
-        
-    }
-    return self;
-}
-
--(Card*)cardAtIndex:(NSUInteger)index
-{
-    return (index <self.cards.count)? self.cards[index]: nil;
-}
+@implementation CardMatchingGameTriple
 
 #define FLIP_COST 1
 #define MISMATCH_PENALTY 2
@@ -84,7 +49,5 @@
         card.faceUp = !card.isFaceUp;
     }
 }
-
-
 
 @end

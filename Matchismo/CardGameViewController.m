@@ -59,13 +59,18 @@
 //        Card *card = [self.deck drawRandomCard];
 //        [cardButton setTitle:card.contents forState:UIControlStateSelected];
 //    }
+    
     [self updateUI];
 }
 
 - (void) updateUI
 {
+    UIImage *cardbackImage = [UIImage imageNamed:@"darkorange.png"];
+    UIImage *cardfaceImage = [UIImage imageNamed:@"white.png"];
+
     for (UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+
         // Lecture 3 slides 95/139
         [cardButton setTitle:card.contents forState:UIControlStateSelected];
         // Lecture 3 slides 97/139
@@ -74,6 +79,14 @@
         cardButton.enabled = !card.isUnplayable;
         // Lecture 3 slides 100/139
         cardButton.alpha = card.isUnplayable ? 0.3:1.0;
+
+        // Hint12?
+        // button.imageEdgeInsets
+        // UIEdgeInsetsMake()
+        // http://stackoverflow.com/questions/2451223/uibutton-how-to-center-an-image-and-a-text-using-imageedgeinsets-and-titleedgei
+        [cardButton setImage:cardfaceImage forState:UIControlStateSelected];
+        [cardButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0, -cardfaceImage.size.width, 5.0, 5.0)];
+        [cardButton setImage:cardbackImage forState:UIControlStateNormal];
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     self.noticeLabel.text = self.game.result;
@@ -111,6 +124,21 @@
 }
 
 - (IBAction)changeModeSegment:(UISegmentedControl *)sender {
+    CardMatchingGame *tmp;
+    
+    if (sender.selectedSegmentIndex == 0) {
+        NSLog(@"Select: 2-card-mode %d",sender.selectedSegmentIndex);
+        tmp = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
+                                                usingDeck:[[PlayingCardDeck alloc] init]];
+
+    } else {
+        NSLog(@"Select: 3-card-mode %d",sender.selectedSegmentIndex);
+        tmp = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
+                                                usingDeck:[[PlayingCardDeck alloc] init]];
+    }
+    [self setGame:tmp];
+    self.flipCount=0;
+    [self updateUI];
 }
 
 
