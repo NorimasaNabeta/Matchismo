@@ -6,6 +6,14 @@
 //  Copyright (c) 2013年 CS193p. All rights reserved.
 //
 
+
+
+//
+// Rule: http://en.wikipedia.org/wiki/Set_(game)
+//       number/symbol/[shading]/color
+//       Given any two cards from the deck,
+//       there will be one and only one other card that forms a set with them.
+//
 #import "CardMatchingGame.h"
 
 @interface CardMatchingGame()
