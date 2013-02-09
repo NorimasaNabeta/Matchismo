@@ -59,7 +59,15 @@
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = card.isUnplayable ? 0.3:1.0;
     }
+    
+    // TODO:
+    // (1) game control is too simple for the set game.
+    //
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+
+    // TODO:
+    // (1) the title of card should be attributed.
+    //
     self.noticeLabel.text = self.game.result;
 }
 
