@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+// [Lecture 5 View Controller Lifecycle and Multiple MVCs(Jeanuary 22, 2013)]
+// Scores 23:54
+// GameResultViewController
 @interface CardGameViewController : UIViewController
 
 @end
