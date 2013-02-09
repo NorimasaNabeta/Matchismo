@@ -28,11 +28,13 @@
     } else {
         [self.cards addObject:card];
     }
+    // NSLog(@"add card: %d", self.cards.count);
     
 }
 - (Card *)drawRandomCard
 {
     Card *randomCard = nil;
+    // NSLog(@"card: %d", self.cards.count);
     if (self.cards.count){
         unsigned index= arc4random() % self.cards.count;
         randomCard = self.cards[index];
