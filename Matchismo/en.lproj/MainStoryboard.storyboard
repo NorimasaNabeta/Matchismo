@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Set Game View Controller - Item-->
+        <!--Set Game View Controller - Set-->
         <scene sceneID="Rxs-b0-kXe">
             <objects>
                 <viewController id="ZBt-EE-8Ii" customClass="SetGameViewController" sceneMemberID="viewController">
@@ -412,7 +412,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="GRa-oh-fyU"/>
+                    <tabBarItem key="tabBarItem" title="Set" id="GRa-oh-fyU"/>
                     <connections>
                         <outlet property="flipLabel" destination="7bA-hL-wcV" id="dP1-JA-lZt"/>
                         <outlet property="noticeLabel" destination="wmk-Vc-fZq" id="6fW-6q-OEz"/>
@@ -447,7 +447,7 @@
             </objects>
             <point key="canvasLocation" x="649" y="655"/>
         </scene>
-        <!--Card Game View Controller - Item-->
+        <!--Card Game View Controller - PlayingCard-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="CardGameViewController" sceneMemberID="viewController">
@@ -757,7 +757,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="wXR-FR-sF4"/>
+                    <tabBarItem key="tabBarItem" title="PlayingCard" id="wXR-FR-sF4"/>
                     <connections>
                         <outlet property="flipLabel" destination="kPx-v9-gTM" id="mSM-Ru-ql8"/>
                         <outlet property="modeControl" destination="IB4-if-ZWL" id="t0L-XD-cSW"/>

@@ -17,5 +17,5 @@
 + (NSUInteger) maxRank;
 + (NSArray*)rankStrings;
 + (NSUInteger) maxColor;
-+ (NSArray*)colorStrings;
++ (NSArray*) colorStrings;
 @end
