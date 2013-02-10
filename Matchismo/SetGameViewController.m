@@ -8,6 +8,7 @@
 
 #import "SetGameViewController.h"
 #import "SetCardDeck.h"
+#import "SetCard.h"
 #import "CardMatchingGameTriple.h"
 
 @interface SetGameViewController ()
@@ -57,13 +58,42 @@
 //
 - (void) updateUI
 {
+    NSDictionary *colorDict = @{ @"yellow": [UIColor yellowColor],
+                                 @"green": [UIColor greenColor], @"blue": [UIColor blueColor], @"red": [UIColor redColor]};
+    NSArray *colorNames = @[@"?", @"red", @"green", @"blue"];
+
     for (UIButton *cardButton in self.cardButtons) {
-        Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+        SetCard *card = (SetCard*)[self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
         
         // NSLog(@"%@", card.contents);
         //[cardButton setTitle:card.contents forState:UIControlStateNormal];
-        [cardButton setAttributedTitle:card.attrContents forState:UIControlStateNormal];
-        
+  
+        //
+        // c.f. Lecture 4 Slide 38-49/51(Attributed Strings)
+        //        
+        UIColor *colorValue = (UIColor*) colorDict[ colorNames[ card.color]];
+        UIColor *transparentColor = [colorValue colorWithAlphaComponent:0.3];
+        NSDictionary *attributes = @{ NSForegroundColorAttributeName: colorValue };
+        switch (card.shading) {
+            case 1: // stroke only
+            attributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor],
+                            NSStrokeWidthAttributeName: @-5,
+                            NSStrokeColorAttributeName: colorValue};
+            break;
+        case 2: // stroke and shade
+            attributes = @{ NSForegroundColorAttributeName: transparentColor,
+                            NSStrokeWidthAttributeName: @-5,
+                            NSStrokeColorAttributeName: colorValue};
+            break;
+        case 3: //stroke and fill
+        default:
+            attributes = @{ NSForegroundColorAttributeName: colorValue };
+            break;
+        }
+        NSMutableAttributedString * attrString = [[NSMutableAttributedString alloc] initWithString:[card contents]];
+        [attrString addAttributes: attributes range:NSMakeRange(0, card.rank)];
+        [cardButton setAttributedTitle:attrString forState:UIControlStateNormal];
+    
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = card.isUnplayable ? 0.0:1.0;

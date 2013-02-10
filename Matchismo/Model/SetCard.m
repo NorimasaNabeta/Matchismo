@@ -77,40 +77,6 @@
 }
 
 //
-// c.f. Lecture 4 Slide 38-49/51(Attributed Strings)
-//
-- (NSAttributedString*)attrContents
-{
-    NSString *base = [self contents];
-    NSDictionary *colorDict = @{ @"yellow": [UIColor yellowColor],
-                                 @"green": [UIColor greenColor], @"blue": [UIColor blueColor], @"red": [UIColor redColor]};
-    NSArray *colorNames = @[@"?", @"red", @"green", @"blue"];
-    UIColor *colorValue = (UIColor*) colorDict[ colorNames[self.color]];
-    UIColor *transparentColor = [colorValue colorWithAlphaComponent:0.3];
-    NSDictionary *attributes = @{ NSForegroundColorAttributeName: colorValue };
-    switch (self.shading) {
-        case 1: // stroke only
-            attributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor],
-                            NSStrokeWidthAttributeName: @-5,
-                            NSStrokeColorAttributeName: colorValue};
-            break;
-        case 2: // stroke and shade
-            attributes = @{ NSForegroundColorAttributeName: transparentColor,
-                            NSStrokeWidthAttributeName: @-5,
-                            NSStrokeColorAttributeName: colorValue};
-            break;
-        case 3: //stroke and fill
-        default:
-            attributes = @{ NSForegroundColorAttributeName: colorValue };
-            break;
-    }
-    NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:base];
-    [string addAttributes: attributes range:NSMakeRange(0, self.rank)];
-
-    return string;
-}
-
-//
 // shading(6)
 //
 + (NSArray*)validSuits

@@ -45,20 +45,28 @@
             }
             if (cardSet.count > 1) {
                 int matchScore = [card match:cardSet];
+                NSMutableArray *members = [[NSMutableArray alloc] init];
                 if (matchScore) {
                     for (Card *otherCard in cardSet) {
                         otherCard.unplayable = YES;
+                        [members addObject:otherCard.contents];
                     }
                     card.unplayable = YES;
                     self.score += matchScore * MATCH_SCORE;
-                    // self.result = [NSString stringWithFormat:@"Matched %@ & %@", card.contents, otherCard.contents];
+                    // NSArray componentsJoinedByString:
+                    self.result = [NSString stringWithFormat:@"Matched %@ & %@",
+                                   card.contents,
+                                   [members componentsJoinedByString:@"& "] ];
                 } else {
                     for (Card *otherCard in cardSet) {
                         otherCard.faceUp = NO;
+                        [members addObject:otherCard.contents];
                     }
                     self.score -= MISMATCH_PENALTY;
-                    //self.result = [NSString stringWithFormat:@"%@ & %@ don't match! %d point penalty!",
-                    //               card.contents, otherCard.contents, MISMATCH_PENALTY];
+                    self.result = [NSString stringWithFormat:@"%@ & %@ don't match! %d point penalty!",
+                                   card.contents,
+                                   [members componentsJoinedByString:@"& "],
+                                   MISMATCH_PENALTY];
                 }
             }
  
