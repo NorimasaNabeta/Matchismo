@@ -54,7 +54,7 @@
 }
 
 //
-//
+// c.f. Hint 7.
 //
 - (void) updateUI
 {

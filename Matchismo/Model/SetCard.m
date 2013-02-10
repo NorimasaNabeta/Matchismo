@@ -13,7 +13,7 @@
 @synthesize suit=_suit;
 
 //
-// 
+// https://piazza.com/class#winter2013/codingtogetherios6/819
 //
 - (int)match:(NSArray *)otherCards
 {
