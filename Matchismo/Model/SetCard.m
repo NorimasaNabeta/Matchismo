@@ -13,7 +13,7 @@
 @synthesize suit=_suit;
 
 //
-//
+// 
 //
 - (int)match:(NSArray *)otherCards
 {
@@ -27,7 +27,7 @@
                 flag++;
             }
         }
-        if (flag > 1){
+        if ((flag == 2) || (flag == 0)){
             score += 1;
         }
         flag=0;
@@ -36,7 +36,7 @@
                 flag++;
             }
         }
-        if (flag > 1){
+        if ((flag == 2) || (flag == 0)){
             score += 2;
         }
         flag=0;
@@ -45,7 +45,7 @@
                 flag++;
             }
         }
-        if (flag > 1){
+        if ((flag == 2) || (flag == 0)){
             score += 4;
         }
         flag=0;
@@ -54,11 +54,12 @@
                 flag++;
             }
         }
-        if (flag > 1){
+        if ((flag == 2) || (flag == 0)){
             score += 8;
         }
     }
-    return score;
+    NSLog(@"Score: %d", score);
+    return (score == (1+2+4+8) ? 1: 0);
 }
 
 // NSArray componentsJoinedByString:
