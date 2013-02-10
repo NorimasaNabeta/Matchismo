@@ -13,7 +13,9 @@
 @end
 
 @implementation Deck
-
+//
+//
+//
 - (NSMutableArray *)cards
 {
     if (!_cards) {
@@ -31,6 +33,9 @@
     // NSLog(@"add card: %d", self.cards.count);
     
 }
+//
+//
+//
 - (Card *)drawRandomCard
 {
     Card *randomCard = nil;

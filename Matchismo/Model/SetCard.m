@@ -12,18 +12,51 @@
 
 @synthesize suit=_suit;
 
+//
+//
+//
 - (int)match:(NSArray *)otherCards
 {
     int score=0;
+    int flag=0;
     
-    if (otherCards.count == 1) {
-        SetCard *otherCard = [otherCards lastObject];
-        if ([otherCard.suit isEqualToString:self.suit]) {
-            score=1;
-        } else if (otherCard.rank == self.rank){
-            score = 4;
+    if (otherCards.count == 2) {
+        flag=0;
+        for (SetCard *otherCard in otherCards) {
+            if ([otherCard.suit isEqualToString:self.suit]) {
+                flag++;
+            }
         }
-        
+        if (flag > 1){
+            score += 1;
+        }
+        flag=0;
+        for (SetCard *otherCard in otherCards) {
+            if (otherCard.rank == self.rank) {
+                flag++;
+            }
+        }
+        if (flag > 1){
+            score += 2;
+        }
+        flag=0;
+        for (SetCard *otherCard in otherCards) {
+            if (otherCard.shading == self.shading) {
+                flag++;
+            }
+        }
+        if (flag > 1){
+            score += 4;
+        }
+        flag=0;
+        for (SetCard *otherCard in otherCards) {
+            if (otherCard.color == self.color) {
+                flag++;
+            }
+        }
+        if (flag > 1){
+            score += 8;
+        }
     }
     return score;
 }
@@ -42,6 +75,9 @@
     return [member componentsJoinedByString:@""];
 }
 
+//
+// c.f. Lecture 4 Slide 38-49/51(Attributed Strings)
+//
 - (NSAttributedString*)attrContents
 {
     NSString *base = [self contents];
@@ -50,28 +86,26 @@
     NSArray *colorNames = @[@"?", @"red", @"green", @"blue"];
     UIColor *colorValue = (UIColor*) colorDict[ colorNames[self.color]];
     UIColor *transparentColor = [colorValue colorWithAlphaComponent:0.3];
-    NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:base];
+    NSDictionary *attributes = @{ NSForegroundColorAttributeName: colorValue };
     switch (self.shading) {
-        case 1:
-            [string addAttributes: @{ NSForegroundColorAttributeName: [UIColor whiteColor],
-       NSStrokeWidthAttributeName: @-5,
-            NSStrokeColorAttributeName: colorValue}
-                            range:NSMakeRange(0, self.rank)];
+        case 1: // stroke only
+            attributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor],
+                            NSStrokeWidthAttributeName: @-5,
+                            NSStrokeColorAttributeName: colorValue};
             break;
-        case 2:
-            [string addAttributes: @{ NSForegroundColorAttributeName: transparentColor,
-                NSStrokeWidthAttributeName: @-5, NSStrokeColorAttributeName: colorValue}
-                           range:NSMakeRange(0, self.rank)];
+        case 2: // stroke and shade
+            attributes = @{ NSForegroundColorAttributeName: transparentColor,
+                            NSStrokeWidthAttributeName: @-5,
+                            NSStrokeColorAttributeName: colorValue};
             break;
-        case 3:
-            [string addAttributes:@{ NSForegroundColorAttributeName: colorValue }
-                            range:NSMakeRange(0, self.rank)];
-            break;
+        case 3: //stroke and fill
         default:
-            [string addAttribute:NSForegroundColorAttributeName value: colorValue
-                           range:NSMakeRange(0, self.rank)];
+            attributes = @{ NSForegroundColorAttributeName: colorValue };
             break;
     }
+    NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:base];
+    [string addAttributes: attributes range:NSMakeRange(0, self.rank)];
+
     return string;
 }
 

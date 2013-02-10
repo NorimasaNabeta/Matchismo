@@ -25,6 +25,9 @@
 @implementation SetGameViewController
 @synthesize game=_game;
 
+//
+//
+//
 - (CardMatchingGame *)game
 {
     if (!_game) {
@@ -40,12 +43,18 @@
     }
 }
 
+//
+//
+//
 - (void) setCardButtons:(NSArray *)cardButtons
 {
     _cardButtons =cardButtons;
     [self updateUI];
 }
 
+//
+//
+//
 - (void) updateUI
 {
     for (UIButton *cardButton in self.cardButtons) {
@@ -65,6 +74,7 @@
 
 //
 //
+//
 - (void) setFlipCount:(int)flipCount
 {
     _flipCount=flipCount;
@@ -74,6 +84,7 @@
 
 //
 //
+//
 - (IBAction)flipCard:(UIButton *)sender {
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipCount++;
@@ -81,6 +92,8 @@
 }
 
 // redealCard
+//
+//
 - (IBAction)redeal:(id)sender {
     [self setGame:nil];
     self.flipCount=0;

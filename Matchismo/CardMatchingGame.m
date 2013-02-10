@@ -29,12 +29,18 @@
 //
 @implementation CardMatchingGame
 
+//
+//
+//
 - (NSMutableArray *) cards
 {
     if (!_cards) _cards =[[NSMutableArray alloc] init];
     return _cards;
 }
 
+//
+//
+//
 -(id) initWithCardCount:(NSUInteger)count
               usingDeck:(Deck*)deck
 {
@@ -54,11 +60,17 @@
     return self;
 }
 
+//
+//
+//
 -(Card*)cardAtIndex:(NSUInteger)index
 {
     return (index <self.cards.count)? self.cards[index]: nil;
 }
 
+//
+//
+//
 #define FLIP_COST 1
 #define MISMATCH_PENALTY 2
 #define MATCH_SCORE 4
@@ -90,7 +102,5 @@
         card.faceUp = !card.isFaceUp;
     }
 }
-
-
 
 @end
