@@ -5,7 +5,7 @@
 //  Created by Norimasa Nabeta on 2013/02/09.
 //  Copyright (c) 2013年 CS193p. All rights reserved.
 //
-
+#import <Foundation/Foundation.h>
 #import "SetCard.h"
 
 @implementation SetCard
@@ -49,9 +49,29 @@
                                  @"green": [UIColor greenColor], @"blue": [UIColor blueColor], @"red": [UIColor redColor]};
     NSArray *colorNames = @[@"?", @"red", @"green", @"blue"];
     UIColor *colorValue = (UIColor*) colorDict[ colorNames[self.color]];
+    UIColor *transparentColor = [colorValue colorWithAlphaComponent:0.3];
     NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:base];
-    [string addAttribute:NSForegroundColorAttributeName value: colorValue
-                   range:NSMakeRange(0, self.rank)];
+    switch (self.shading) {
+        case 1:
+            [string addAttributes: @{ NSForegroundColorAttributeName: [UIColor whiteColor],
+       NSStrokeWidthAttributeName: @-5,
+            NSStrokeColorAttributeName: colorValue}
+                            range:NSMakeRange(0, self.rank)];
+            break;
+        case 2:
+            [string addAttributes: @{ NSForegroundColorAttributeName: transparentColor,
+                NSStrokeWidthAttributeName: @-5, NSStrokeColorAttributeName: colorValue}
+                           range:NSMakeRange(0, self.rank)];
+            break;
+        case 3:
+            [string addAttributes:@{ NSForegroundColorAttributeName: colorValue }
+                            range:NSMakeRange(0, self.rank)];
+            break;
+        default:
+            [string addAttribute:NSForegroundColorAttributeName value: colorValue
+                           range:NSMakeRange(0, self.rank)];
+            break;
+    }
     return string;
 }
 
@@ -60,7 +80,7 @@
 //
 + (NSArray*)validSuits
 {
-    return @[@"▲", @"●", @"■", @"△", @"○", @"□"];
+    return @[@"▲", @"●", @"■"];
 }
 - (void) setSuit:(NSString *)suit
 {
@@ -86,6 +106,21 @@
 {
     if(rank <= [SetCard maxRank]){
         _rank = rank;
+    }
+}
+
+//
+// shading(3)
+//
++ (NSArray*)shadingStrings
+{
+    return @[@"?", @"fill", @"shade", @"stroke"];
+}
++(NSUInteger) maxShading { return [self shadingStrings].count -1; }
+-(void) setShading:(NSUInteger)shading
+{
+    if(shading <= [SetCard maxShading]){
+        _shading = shading;
     }
 }
 

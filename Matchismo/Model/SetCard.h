@@ -12,10 +12,13 @@
 @interface SetCard : Card
 @property (strong, nonatomic) NSString *suit;
 @property (nonatomic) NSUInteger rank;
+@property (nonatomic) NSUInteger shading;
 @property (nonatomic) NSUInteger color;
 + (NSArray*)validSuits;
 + (NSUInteger) maxRank;
 + (NSArray*)rankStrings;
++ (NSUInteger) maxShading;
++ (NSArray*) shadingStrings;
 + (NSUInteger) maxColor;
 + (NSArray*) colorStrings;
 @end

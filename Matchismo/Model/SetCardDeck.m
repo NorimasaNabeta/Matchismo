@@ -17,12 +17,15 @@
     if(self){
         for (NSString *suit in [SetCard validSuits]) {
             for (NSUInteger rank=1; rank <= [SetCard maxRank]; rank++) {
-                for (NSUInteger color=1; color <= [SetCard maxColor]; color++) {
-                    SetCard *card=[[SetCard alloc] init];
-                    card.rank = rank;
-                    card.suit = suit;
-                    card.color = color;
-                    [self addCard:card atTop:YES];
+                for (NSUInteger shading=1; shading <= [SetCard maxShading]; shading++) {
+                    for (NSUInteger color=1; color <= [SetCard maxColor]; color++) {
+                        SetCard *card=[[SetCard alloc] init];
+                        card.rank = rank;
+                        card.suit = suit;
+                        card.color = color;
+                        card.shading = shading;
+                        [self addCard:card atTop:YES];
+                    }
                 }
             }
         }

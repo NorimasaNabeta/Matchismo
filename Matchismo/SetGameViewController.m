@@ -57,7 +57,7 @@
         
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
-        cardButton.alpha = card.isUnplayable ? 0.3:1.0;
+        cardButton.alpha = card.isUnplayable ? 0.0:1.0;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     self.noticeLabel.text = self.game.result;
