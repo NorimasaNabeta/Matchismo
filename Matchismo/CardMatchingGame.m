@@ -75,12 +75,10 @@
                         otherCard.unplayable = YES;
                         card.unplayable = YES;
                         self.score += matchScore * MATCH_SCORE;
-                        
                         self.result = [NSString stringWithFormat:@"Matched %@ & %@", card.contents, otherCard.contents];
                     } else {
                         otherCard.faceUp = NO;
                         self.score -= MISMATCH_PENALTY;
-                        
                         self.result = [NSString stringWithFormat:@"%@ & %@ don't match! %d point penalty!",
                                        card.contents, otherCard.contents, MISMATCH_PENALTY];
                     }

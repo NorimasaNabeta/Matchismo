@@ -14,31 +14,19 @@
 @property (strong, nonatomic) IBOutlet UILabel *flipLabel;
 @property (nonatomic) int flipCount;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-// Lecture 3 slides 89/139
-//@property (strong, nonatomic) Deck *deck;
-// Lecture 3 slides 85/139
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *modeControl;
+// @property (weak, nonatomic) IBOutlet UISegmentedControl *modeControl;
 @end
 
 @implementation CardGameViewController
 
-// Lecture 3 slides 89/139
-//- (Deck*) deck
-//{
-//    if(!_deck) _deck = [[PlayingCardDeck alloc] init];
-//    return _deck;
-//}
-
 @synthesize game=_game;
-// Lecture 3 slides 86/139
+
 - (CardMatchingGame *)game
 {
     if (!_game) {
-        // Lecture 3 slides 90/139
-//        _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:self.deck];
         _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
                                                   usingDeck:[[PlayingCardDeck alloc] init]];
     }
@@ -54,12 +42,6 @@
 - (void) setCardButtons:(NSArray *)cardButtons
 {
     _cardButtons =cardButtons;
-    // Lecture 3 slides 87/139
-//    for (UIButton *cardButton in cardButtons) {
-//        Card *card = [self.deck drawRandomCard];
-//        [cardButton setTitle:card.contents forState:UIControlStateSelected];
-//    }
-    
     [self updateUI];
 }
 
@@ -111,35 +93,36 @@
 //    }
     self.flipCount++;
     [self updateUI];
-    if (self.modeControl.enabled) {
-        self.modeControl.enabled = NO;
-    }
+//    if (self.modeControl.enabled) {
+//        self.modeControl.enabled = NO;
+//    }
 }
 
 - (IBAction)redealCard:(UIButton *)sender {
     [self setGame:nil];
     self.flipCount=0;
     [self updateUI];
-    self.modeControl.enabled = YES;
+//    self.modeControl.enabled = YES;
 }
 
-- (IBAction)changeModeSegment:(UISegmentedControl *)sender {
-    CardMatchingGame *tmp;
-    
-    if (sender.selectedSegmentIndex == 0) {
-        NSLog(@"Select: 2-card-mode %d",sender.selectedSegmentIndex);
-        tmp = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
-                                                usingDeck:[[PlayingCardDeck alloc] init]];
 
-    } else {
-        NSLog(@"Select: 3-card-mode %d",sender.selectedSegmentIndex);
-        tmp = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
-                                                usingDeck:[[PlayingCardDeck alloc] init]];
-    }
-    [self setGame:tmp];
-    self.flipCount=0;
-    [self updateUI];
-}
+//- (IBAction)changeModeSegment:(UISegmentedControl *)sender {
+//    CardMatchingGame *tmp;
+//    
+//    if (sender.selectedSegmentIndex == 0) {
+//        NSLog(@"Select: 2-card-mode %d",sender.selectedSegmentIndex);
+//        tmp = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
+//                                                usingDeck:[[PlayingCardDeck alloc] init]];
+//
+//    } else {
+//        NSLog(@"Select: 3-card-mode %d",sender.selectedSegmentIndex);
+//        tmp = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
+//                                                usingDeck:[[PlayingCardDeck alloc] init]];
+//    }
+//    [self setGame:tmp];
+//    self.flipCount=0;
+//    [self updateUI];
+//}
 
 
 

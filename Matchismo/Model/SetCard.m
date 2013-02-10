@@ -39,34 +39,28 @@
     for (NSUInteger idx=1; idx <= self.rank; idx++) {
         [member addObject:self.suit];
     }
-    NSString *base = [member componentsJoinedByString:@""];
-    // return [NSString stringWithFormat:@"%@%d", base, self.color];
-    return base;
+    return [member componentsJoinedByString:@""];
 }
 
 - (NSAttributedString*)attrContents
 {
-    NSMutableArray *member = [[NSMutableArray alloc] init];
-    for (NSUInteger idx=1; idx <= self.rank; idx++) {
-        [member addObject:self.suit];
-    }
-    NSString *base = [member componentsJoinedByString:@""];
-    
-    NSDictionary *colorDict = @{ @"green": [UIColor greenColor],
+    NSString *base = [self contents];
+    NSDictionary *colorDict = @{ @"yellow": [UIColor yellowColor],
                                  @"green": [UIColor greenColor], @"blue": [UIColor blueColor], @"red": [UIColor redColor]};
     NSArray *colorNames = @[@"?", @"red", @"green", @"blue"];
+    UIColor *colorValue = (UIColor*) colorDict[ colorNames[self.color]];
     NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:base];
-    [string addAttribute:NSForegroundColorAttributeName value: (UIColor*) colorDict[ colorNames[self.color]]
-                   range:NSMakeRange(0,self.rank)];
+    [string addAttribute:NSForegroundColorAttributeName value: colorValue
+                   range:NSMakeRange(0, self.rank)];
     return string;
 }
 
 //
-//
+// shading(6)
 //
 + (NSArray*)validSuits
 {
-    return @[@"▲", @"●", @"■"];
+    return @[@"▲", @"●", @"■", @"△", @"○", @"□"];
 }
 - (void) setSuit:(NSString *)suit
 {
@@ -81,14 +75,13 @@
 }
 
 //
-//
+// rank(3)
 //
 + (NSArray*)rankStrings
 {
     return @[@"?", @"1", @"2", @"3"];
 }
 +(NSUInteger) maxRank { return [self rankStrings].count -1; }
-
 -(void) setRank:(NSUInteger)rank
 {
     if(rank <= [SetCard maxRank]){
@@ -97,7 +90,7 @@
 }
 
 //
-//
+// color(3)
 //
 + (NSArray*)colorStrings
 {

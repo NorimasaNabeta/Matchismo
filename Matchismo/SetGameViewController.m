@@ -8,7 +8,7 @@
 
 #import "SetGameViewController.h"
 #import "SetCardDeck.h"
-#import "CardMatchingGame.h"
+#import "CardMatchingGameTriple.h"
 
 @interface SetGameViewController ()
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
@@ -28,7 +28,7 @@
 - (CardMatchingGame *)game
 {
     if (!_game) {
-        _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
+        _game = [[CardMatchingGameTriple alloc] initWithCardCount:self.cardButtons.count
                                                   usingDeck:[[SetCardDeck alloc] init]];
     }
     return _game;
