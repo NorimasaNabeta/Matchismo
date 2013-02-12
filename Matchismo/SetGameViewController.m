@@ -141,10 +141,12 @@
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     self.noticeLabel.text = self.game.result;
-    CardMatchingGameTriple *gameT = (CardMatchingGameTriple*) self.game;
-    for (SetCard *card in gameT.members) {
-        NSDictionary* cardAttr = [self getSetCardAttributes:card];
-        [self  addLableAttributes:cardAttr substr:card.contents];
+    if (! [self.game.result isEqualToString:@""]) {
+        CardMatchingGameTriple *gameT = (CardMatchingGameTriple*) self.game;
+        for (SetCard *card in gameT.members) {
+            NSDictionary* cardAttr = [self getSetCardAttributes:card];
+            [self  addLableAttributes:cardAttr substr:card.contents];
+        }
     }
 }
 

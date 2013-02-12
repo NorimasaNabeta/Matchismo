@@ -65,6 +65,7 @@
                     for (Card *otherCard in cardSet) {
                         otherCard.faceUp = NO;
                         [members addObject:otherCard.contents];
+                        [cardMembers addObject:otherCard];
                     }
                     self.score -= MISMATCH_PENALTY;
                     self.result = [NSString stringWithFormat:@"%@ & %@ don't match! %d point penalty!",
