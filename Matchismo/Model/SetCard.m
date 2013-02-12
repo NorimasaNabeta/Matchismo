@@ -27,34 +27,65 @@
                 flag++;
             }
         }
-        if ((flag == 2) || (flag == 0)){
+        if (flag==0){
+            SetCard *other0 = otherCards[0];
+            SetCard *other1 = otherCards[1];
+            if(! [other0.suit isEqualToString:other1.suit]) {
+                score += 1;
+            }
+        }
+        else if (flag == 2){
             score += 1;
         }
+        
         flag=0;
         for (SetCard *otherCard in otherCards) {
             if (otherCard.rank == self.rank) {
                 flag++;
             }
         }
-        if ((flag == 2) || (flag == 0)){
+        if (flag==0){
+            SetCard *other0 = otherCards[0];
+            SetCard *other1 = otherCards[1];
+            if(! other0.rank != other1.rank) {
+                score += 2;
+            }
+        }
+        else if (flag == 2){
             score += 2;
         }
+
         flag=0;
         for (SetCard *otherCard in otherCards) {
             if (otherCard.shading == self.shading) {
                 flag++;
             }
         }
-        if ((flag == 2) || (flag == 0)){
+        if (flag==0){
+            SetCard *other0 = otherCards[0];
+            SetCard *other1 = otherCards[1];
+            if(! other0.shading != other1.shading) {
+                score += 4;
+            }
+        }
+        else if (flag == 2){
             score += 4;
         }
+
         flag=0;
         for (SetCard *otherCard in otherCards) {
             if (otherCard.color == self.color) {
                 flag++;
             }
         }
-        if ((flag == 2) || (flag == 0)){
+        if (flag==0){
+            SetCard *other0 = otherCards[0];
+            SetCard *other1 = otherCards[1];
+            if(other0.color != other1.color) {
+                score += 8;
+            }
+        }
+        else if (flag == 2){
             score += 8;
         }
     }
