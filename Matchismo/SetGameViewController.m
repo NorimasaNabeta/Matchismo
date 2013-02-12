@@ -53,6 +53,47 @@
     [self updateUI];
 }
 
+
+
+-(void)addLableAttributes:(NSDictionary *)attributes substr:(NSString *) word
+{
+    NSRange range = [[self.noticeLabel.attributedText string]rangeOfString:word];
+    if (range.location != NSNotFound) {
+        NSMutableAttributedString *matt = [self.noticeLabel.attributedText mutableCopy];
+        [matt addAttributes:attributes range:range];
+        self.noticeLabel.attributedText = matt;
+    }
+    
+}
+
+- (NSDictionary *) getSetCardAttributes: (SetCard *) card
+{
+    NSDictionary *colorDict = @{ @"yellow": [UIColor yellowColor],
+                                 @"green": [UIColor greenColor], @"blue": [UIColor blueColor], @"red": [UIColor redColor]};
+    NSArray *colorNames = @[@"?", @"red", @"green", @"blue"];
+    UIColor *colorValue = (UIColor*) colorDict[ colorNames[ card.color]];
+    UIColor *transparentColor = [colorValue colorWithAlphaComponent:0.3];
+    NSDictionary *attributes = @{ NSForegroundColorAttributeName: colorValue };
+    switch (card.shading) {
+        case 1: // stroke only
+            attributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor],
+                            NSStrokeWidthAttributeName: @-5,
+                            NSStrokeColorAttributeName: colorValue};
+            break;
+        case 2: // stroke and shade
+            attributes = @{ NSForegroundColorAttributeName: transparentColor,
+                            NSStrokeWidthAttributeName: @-5,
+                            NSStrokeColorAttributeName: colorValue};
+            break;
+        case 3: //stroke and fill
+        default:
+            attributes = @{ NSForegroundColorAttributeName: colorValue };
+            break;
+    }
+    return (attributes);
+}
+
+
 //
 // c.f. Hint 7.
 //
@@ -100,6 +141,11 @@
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     self.noticeLabel.text = self.game.result;
+    CardMatchingGameTriple *gameT = (CardMatchingGameTriple*) self.game;
+    for (SetCard *card in gameT.members) {
+        NSDictionary* cardAttr = [self getSetCardAttributes:card];
+        [self  addLableAttributes:cardAttr substr:card.contents];
+    }
 }
 
 //

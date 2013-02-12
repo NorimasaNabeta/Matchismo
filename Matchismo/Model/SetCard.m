@@ -15,6 +15,9 @@
 //
 // https://piazza.com/class#winter2013/codingtogetherios6/819
 //
+// TODO:
+// How to make this function recursive?
+//
 - (int)match:(NSArray *)otherCards
 {
     int score=0;
@@ -92,6 +95,8 @@
     NSLog(@"Score: %d", score);
     return (score == (1+2+4+8) ? 1: 0);
 }
+
+
 
 // NSArray componentsJoinedByString:
 //    NSAttributedString *ast = @{ NSFontAttributeName: [UIFont systemFontOfSize:24],

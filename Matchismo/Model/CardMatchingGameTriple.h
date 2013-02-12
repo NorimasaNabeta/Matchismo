@@ -10,6 +10,7 @@
 #import "CardMatchingGame.h"
 
 @interface CardMatchingGameTriple : CardMatchingGame
+@property (strong,readonly) NSArray * members;
 -(void) flipCardAtIndex:(NSUInteger)index;
 
 @end

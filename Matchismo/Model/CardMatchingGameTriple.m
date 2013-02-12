@@ -12,6 +12,7 @@
 @property (strong,nonatomic) NSMutableArray *cards;
 @property (nonatomic) int score;
 @property (nonatomic) NSString *result;
+@property (strong,nonatomic) NSArray * members;
 @end
 
 @implementation CardMatchingGameTriple
@@ -45,11 +46,13 @@
             }
             if (cardSet.count > 1) {
                 int matchScore = [card match:cardSet];
+                NSMutableArray *cardMembers = [[NSMutableArray alloc] init];
                 NSMutableArray *members = [[NSMutableArray alloc] init];
                 if (matchScore) {
                     for (Card *otherCard in cardSet) {
                         otherCard.unplayable = YES;
                         [members addObject:otherCard.contents];
+                        [cardMembers addObject:otherCard];
                     }
                     card.unplayable = YES;
                     self.score += matchScore * MATCH_SCORE;
@@ -57,6 +60,7 @@
                     self.result = [NSString stringWithFormat:@"Matched %@ & %@",
                                    card.contents,
                                    [members componentsJoinedByString:@"& "] ];
+                    self.members = cardMembers;
                 } else {
                     for (Card *otherCard in cardSet) {
                         otherCard.faceUp = NO;
@@ -67,6 +71,7 @@
                                    card.contents,
                                    [members componentsJoinedByString:@"& "],
                                    MISMATCH_PENALTY];
+                    self.members = cardMembers;
                 }
             }
  
