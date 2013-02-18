@@ -44,6 +44,7 @@
                     [cardSet addObject:otherCard];
                 }
             }
+            self.penalty = 0;
             if (cardSet.count > 1) {
                 int matchScore = [card match:cardSet];
                 NSMutableArray *cardMembers = [[NSMutableArray alloc] init];
@@ -55,11 +56,15 @@
                         [cardMembers addObject:otherCard];
                     }
                     card.unplayable = YES;
+                    [cardMembers addObject:card];
+
                     self.score += matchScore * MATCH_SCORE;
                     // NSArray componentsJoinedByString:
-                    self.result = [NSString stringWithFormat:@"Matched %@ & %@",
-                                   card.contents,
-                                   [members componentsJoinedByString:@"& "] ];
+//                    self.result = [NSString stringWithFormat:@"Matched %@ & %@",
+//                                   card.contents,
+//                                   [members componentsJoinedByString:@"& "] ];
+//                    self.result =@"Mached";
+                    self.penalty = MATCH_SCORE;
                     self.members = cardMembers;
                 } else {
                     for (Card *otherCard in cardSet) {
@@ -67,11 +72,14 @@
                         [members addObject:otherCard.contents];
                         [cardMembers addObject:otherCard];
                     }
+                    [cardMembers addObject:card];
+
                     self.score -= MISMATCH_PENALTY;
-                    self.result = [NSString stringWithFormat:@"%@ & %@ don't match! %d point penalty!",
-                                   card.contents,
-                                   [members componentsJoinedByString:@"& "],
-                                   MISMATCH_PENALTY];
+//                    self.result = [NSString stringWithFormat:@"%@ & %@ don't match! %d point penalty!",
+//                                   card.contents,
+//                                   [members componentsJoinedByString:@"& "],
+//                                   MISMATCH_PENALTY];
+                    self.penalty = MISMATCH_PENALTY;
                     self.members = cardMembers;
                 }
             }

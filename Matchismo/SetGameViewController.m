@@ -66,10 +66,13 @@
     
 }
 
+//
+// c.f. Lecture 4 Slide 38-49/51(Attributed Strings)
+//
 - (NSDictionary *) getSetCardAttributes: (SetCard *) card
 {
-    NSDictionary *colorDict = @{ @"yellow": [UIColor yellowColor],
-                                 @"green": [UIColor greenColor], @"blue": [UIColor blueColor], @"red": [UIColor redColor]};
+    NSDictionary *colorDict = @{ @"yellow": [UIColor yellowColor], @"green": [UIColor greenColor],
+                                 @"blue": [UIColor blueColor], @"red": [UIColor redColor]};
     NSArray *colorNames = @[@"?", @"red", @"green", @"blue"];
     UIColor *colorValue = (UIColor*) colorDict[ colorNames[ card.color]];
     UIColor *transparentColor = [colorValue colorWithAlphaComponent:0.3];
@@ -99,40 +102,14 @@
 //
 - (void) updateUI
 {
-    NSDictionary *colorDict = @{ @"yellow": [UIColor yellowColor],
-                                 @"green": [UIColor greenColor], @"blue": [UIColor blueColor], @"red": [UIColor redColor]};
-    NSArray *colorNames = @[@"?", @"red", @"green", @"blue"];
-
     for (UIButton *cardButton in self.cardButtons) {
         SetCard *card = (SetCard*)[self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
         
         // NSLog(@"%@", card.contents);
         //[cardButton setTitle:card.contents forState:UIControlStateNormal];
-  
-        //
-        // c.f. Lecture 4 Slide 38-49/51(Attributed Strings)
-        //        
-        UIColor *colorValue = (UIColor*) colorDict[ colorNames[ card.color]];
-        UIColor *transparentColor = [colorValue colorWithAlphaComponent:0.3];
-        NSDictionary *attributes = @{ NSForegroundColorAttributeName: colorValue };
-        switch (card.shading) {
-            case 1: // stroke only
-            attributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor],
-                            NSStrokeWidthAttributeName: @-5,
-                            NSStrokeColorAttributeName: colorValue};
-            break;
-        case 2: // stroke and shade
-            attributes = @{ NSForegroundColorAttributeName: transparentColor,
-                            NSStrokeWidthAttributeName: @-5,
-                            NSStrokeColorAttributeName: colorValue};
-            break;
-        case 3: //stroke and fill
-        default:
-            attributes = @{ NSForegroundColorAttributeName: colorValue };
-            break;
-        }
         NSMutableAttributedString * attrString = [[NSMutableAttributedString alloc] initWithString:[card contents]];
-        [attrString addAttributes: attributes range:NSMakeRange(0, card.rank)];
+        [attrString addAttributes:[self getSetCardAttributes:card]
+                            range: NSMakeRange(0, card.rank)];
         [cardButton setAttributedTitle:attrString forState:UIControlStateNormal];
     
         cardButton.selected = card.isFaceUp;
@@ -140,14 +117,36 @@
         cardButton.alpha = card.isUnplayable ? 0.0:1.0;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
-    self.noticeLabel.text = self.game.result;
-    if (! [self.game.result isEqualToString:@""]) {
-        CardMatchingGameTriple *gameT = (CardMatchingGameTriple*) self.game;
-        for (SetCard *card in gameT.members) {
-            NSDictionary* cardAttr = [self getSetCardAttributes:card];
-            [self  addLableAttributes:cardAttr substr:card.contents];
+    
+    
+    // TO DO:
+//    self.noticeLabel.text = self.game.result;
+//    if (! [self.game.result isEqualToString:@""]) {
+//        CardMatchingGameTriple *gameT = (CardMatchingGameTriple*) self.game;
+//        for (SetCard *card in gameT.members) {
+//            NSDictionary* cardAttr = [self getSetCardAttributes:card];
+//            [self addLableAttributes:cardAttr substr:card.contents];
+//        }
+//    }
+
+    CardMatchingGameTriple *gameT = (CardMatchingGameTriple*) self.game;
+    if (gameT.penalty != 0) {
+        if (gameT.penalty > 0) {
+            self.noticeLabel.text = @" Matched ";
+        } else {
+            self.noticeLabel.text = @" Not Matched ";
+            
         }
+        NSMutableAttributedString *matt = [self.noticeLabel.attributedText mutableCopy];
+        for (SetCard *card in gameT.members) {
+            NSMutableAttributedString * attrString = [[NSMutableAttributedString alloc] initWithString:[card contents]];
+            [attrString addAttributes:[self getSetCardAttributes:card]
+                                range: NSMakeRange(0, card.rank)];
+            [matt insertAttributedString:attrString atIndex:0];
+        }
+        self.noticeLabel.attributedText=matt;
     }
+
 }
 
 //
@@ -164,8 +163,8 @@
 //
 //
 - (IBAction)flipCard:(UIButton *)sender {
-    [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipCount++;
+    [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     [self updateUI];
 }
 

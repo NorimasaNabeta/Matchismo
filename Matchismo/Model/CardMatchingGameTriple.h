@@ -11,6 +11,8 @@
 
 @interface CardMatchingGameTriple : CardMatchingGame
 @property (strong,readonly) NSArray * members;
+@property (nonatomic) int penalty;
+
 -(void) flipCardAtIndex:(NSUInteger)index;
 
 @end
